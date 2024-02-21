@@ -1,7 +1,16 @@
+using EmprestimoLivros.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Service de conexão com o banco de dados
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); //DB Config do appsettings
+});
 
 var app = builder.Build();
 
