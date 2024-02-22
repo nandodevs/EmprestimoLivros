@@ -482,3 +482,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/EmprestimoLivros/Views/Shared/_Layout.cshtml
