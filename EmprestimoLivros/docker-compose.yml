@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: 1q2w3e4r@#$
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: 1q2w3e4r@#$
+      MSSQL_DB_NAME: emprestimosdb
+      MSSQL_USER: sa
+      MSSQL_PASSWORD: 1q2w3e4r@#$
+
+    ports:
+      - "1433:1433"
+    networks:
+      - sql-server-network
+    healthcheck:
+      test: ["CMD", "Invoke-Sqlcmd", "-Q", "Select 1", "-ServerInstance", "localhost", "-U", "sa", "-P", "$(MSSQL_SA_PASSWORD)"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  sql-server-network:
+    driver: bridge
