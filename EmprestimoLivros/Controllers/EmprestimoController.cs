@@ -19,5 +19,13 @@ namespace EmprestimoLivros.Controllers
 
             return View(emprestimos);
         }
+
+        public IActionResult Cadastrar()
+        {
+
+            return View();
+        }
+
+
     }
 }
