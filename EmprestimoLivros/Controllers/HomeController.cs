@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using EmprestimoLivros.Models;
+using DoramasControl.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EmprestimoLivros.Controllers
+namespace DoramasControl.Controllers
 {
     public class HomeController : Controller
     {

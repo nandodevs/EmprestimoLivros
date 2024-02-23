@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web_api:
-    image: emprestimolivros
+    image: doramasct
     container_name: emprestimo_livros_app
     ports:
       - "5000:80"

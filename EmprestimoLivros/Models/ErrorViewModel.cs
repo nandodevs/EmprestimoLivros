@@ -1,4 +1,4 @@
-namespace EmprestimoLivros.Models
+namespace DoramasControl.Models
 {
     public class ErrorViewModel
     {

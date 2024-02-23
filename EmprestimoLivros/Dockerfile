@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
@@ -10,45 +8,17 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["EmprestimoLivros/EmprestimoLivros.csproj", "EmprestimoLivros/"]
-RUN dotnet restore "./EmprestimoLivros/EmprestimoLivros.csproj"
+COPY ["DoramasControl/DoramasControl.csproj", "DoramasControl/"]
+RUN dotnet restore "./DoramasControl/DoramasControl.csproj"
 COPY . .
-WORKDIR "/src/EmprestimoLivros"
-RUN dotnet build "./EmprestimoLivros.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/DoramasControl"
+RUN dotnet build "./DoramasControl.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./EmprestimoLivros.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./DoramasControl.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "EmprestimoLivros.dll"]
-
-=======
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["EmprestimoLivros/EmprestimoLivros.csproj", "EmprestimoLivros/"]
-RUN dotnet restore "./EmprestimoLivros/EmprestimoLivros.csproj"
-COPY . .
-WORKDIR "/src/EmprestimoLivros"
-RUN dotnet build "./EmprestimoLivros.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./EmprestimoLivros.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "EmprestimoLivros.dll"]
->>>>>>> 82f58fd (Branch tester created)
+ENTRYPOINT ["dotnet", "DoramasControl.dll"]
