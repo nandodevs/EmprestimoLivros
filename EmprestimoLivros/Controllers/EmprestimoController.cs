@@ -1,4 +1,5 @@
-﻿using EmprestimoLivros.Data;
+
+using EmprestimoLivros.Data;
 using EmprestimoLivros.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ namespace EmprestimoLivros.Controllers
 
         public EmprestimoController(ApplicationDbContext db)
         {
-            _db = db;
+            _db = db;   
         }
 
         public IActionResult Index()
@@ -26,6 +27,6 @@ namespace EmprestimoLivros.Controllers
             return View();
         }
 
-
     }
 }
+
