@@ -10,7 +10,7 @@ namespace EmprestimoLivros.Controllers
 
         public EmprestimoController(ApplicationDbContext db)
         {
-            _db = db;   
+            _db = db;
         }
 
         public IActionResult Index()

@@ -1,16 +1,22 @@
 version: '3.8'
 
 services:
+  web_api:
+    image: emprestimolivros
+    container_name: emprestimo_livros_app
+    ports:
+      - "5000:80"
+
   sql-server:
     image: mcr.microsoft.com/mssql/server
-    container_name: sqlserver
+    container_name: sql_server2022
     environment:
       SA_PASSWORD: 1q2w3e4r@#$
       ACCEPT_EULA: Y
-      MSSQL_DB_NAME: emprestimosdb
+      MSSQL_SA_PASSWORD: 1q2w3e4r@#$
+      MSSQL_DB_NAME: livrosdb
       MSSQL_USER: sa
       MSSQL_PASSWORD: 1q2w3e4r@#$
-
     ports:
       - "1433:1433"
     networks:
