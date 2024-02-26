@@ -10,13 +10,13 @@
       "applicationUrl": "http://localhost:5056"
     },
     "https": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7014;http://localhost:5056"
+        "commandName": "Project",
+        "launchBrowser": true,
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "dotnetRunMessages": true,
+        "applicationUrl": "https://localhost:7014;http://localhost:5056"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -29,10 +29,11 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "environmentVariables": {
-        "ASPNETCORE_HTTPS_PORTS": "8081",
-        "ASPNETCORE_HTTP_PORTS": "8080"
-      },
+        "environmentVariables": {
+            //"ASPNETCORE_HTTPS_PORTS": "8081",
+            "ASPNETCORE_HTTP_PORTS": "8080",
+            "ASPNETCORE_HTTPS_PORTS": "1433"
+        },
       "publishAllPorts": true,
       "useSSL": true
     }

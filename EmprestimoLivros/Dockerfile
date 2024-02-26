@@ -1,26 +1,24 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+# Usa a imagem base do ASP.NET Core
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
 EXPOSE 80
+EXPOSE 1433
 
-
+# Build da aplicação
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["EmprestimoLivros/EmprestimoLivros.csproj", "EmprestimoLivros/"]
-RUN dotnet restore "./EmprestimoLivros/EmprestimoLivros.csproj"
+RUN dotnet restore "EmprestimoLivros/EmprestimoLivros.csproj"
 COPY . .
 WORKDIR "/src/EmprestimoLivros"
-RUN dotnet build "./EmprestimoLivros.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "EmprestimoLivros.csproj" -c Release -o /app/build
 
+# Publicação da aplicação
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./EmprestimoLivros.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "EmprestimoLivros.csproj" -c Release -o /app/publish
 
+# Configuração final
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "EmprestimoLivros.dll"]
-
